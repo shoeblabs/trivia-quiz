@@ -1,0 +1,41 @@
+<!doctype HTML>
+
+<html lang="en" data-ng-app="triviaQuiz">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Trivia Quiz</title>
+    <meta name="description" content="Quiz App to play and learn">
+    <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="#bf1e2e">
+
+    <base href="/">  
+
+    <link href="assets/images/favicon.png" rel="icon">
+    <link rel="manifest" href="./manifest.json?ver=1.0.1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/app.bundle.771e08e893a52f4d2dfd87860f2063cd.min.css">
+    <!-- endinject -->
+    
+</head>
+
+<body>
+	
+    <!-- Header -->
+    <header>
+        <img ui-sref="home" src='/assets/images/logo.png'>
+    </header>
+
+    <!-- main -->
+    <main ui-view></main>
+        
+    <!-- inject:js -->
+    <script src="/js/vendor.bundle.d84a1c461dbb5ab2195918d54228436d.min.js"></script>
+    <script src="/js/app.bundle.02208a064ddcf6c066ef3e8451907946.min.js"></script>
+    <!-- endinject -->
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!doctype HTML>
+
+<html lang="en" data-ng-app="triviaQuiz">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Trivia Quiz</title>
+    <meta name="description" content="Quiz App to play and learn">
+    <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="#64992f">
+
+    <base href="/">  
+
+    <!-- Manisfest file & icon -->
+    <link href="app/manifest.json" rel="manifest" >
+    <link href="assets/images/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <img ui-sref="home" src='/assets/images/logo.png'>
+    </header>
+
+    <!-- main -->
+    <main ui-view></main>
+    
+    <!-- Vendor Js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-router/release/stateEvents.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    
+    <!-- App Js -->
+    <script src="app/main.js"></script>
+    <script src="app/main.config.js"></script>
+    <script src="app/main.router.js"></script>
+
+    <!-- App Js : Services -->
+    <script src="app/services/quiz.service.js"></script> 
+    
+    <!-- App Js : Controllers -->
+    <script src="app/controllers/home.controller.js"></script>
+    <script src="app/controllers/quiz.controller.js"></script>
+ 
+</body>
+
+</html>

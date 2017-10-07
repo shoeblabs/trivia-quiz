@@ -1,0 +1,21 @@
+{
+  "name": "trivia-quiz",
+  "description": "Trivia qQuiz",
+  "version": "1.0.0",
+  "homepage": "https://progressivefrontend.com",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "1.6.6",
+    "angular-ui-router": "*",
+    "angular-animate": "^1.6.4",
+    "angular-sanitize": "^1.6.6"
+  },
+  "overrides": {
+    "angular-ui-router": {
+      "main": [
+        "release/angular-ui-router.js",
+        "release/stateEvents.js"
+      ]
+    }
+  }
+}

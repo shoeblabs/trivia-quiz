@@ -1,0 +1,41 @@
+
+<!-- quiz-block-->
+<div class="quiz-wrapper" ng-if="!ctrl.hideQuizBlock">
+    <div class="flex-row flex-center">
+        <div class="flex-1">
+            <span class="quiz-subheading">Category</span><br>
+            <span class="quiz-heading" data-ng-bind="ctrl.quizDetail.category.name"></span>
+        </div>
+        <div id="cont" data-pct="{{ctrl.timeCount}}">
+            <svg id="svg" width="90" height="90" viewPort="8 8 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <circle r="35" cx="40" cy="40" fill="transparent" stroke-dasharray="219.92"></circle>
+                <circle id="bar" r="35" cx="40" cy="40" fill="transparent" stroke-dasharray="219.92" ng-style="{'stroke-dashoffset':3.6653 * (60-ctrl.timeCount)}"></circle>
+            </svg>
+        </div>
+        <div class="flex-1 text-right">
+            <span class="quiz-subheading">Difficulty Level</span><br>
+            <span class="quiz-heading" data-ng-bind="ctrl.quizDetail.difficulty"></span>
+        </div>
+    </div>
+    <div class="question-wrap">
+        <p class="info" data-ng-bind="'Question '+(ctrl.currentQuestion+1)+' of '+ ctrl.questions.length"></p>
+        <h3 data-ng-bind-html="(ctrl.currentQuestion+1)+'. '+ctrl.questions[ctrl.currentQuestion].question"></h3>
+
+        <div class="answer" data-ng-repeat="ans in ctrl.questions[ctrl.currentQuestion].answers">
+            <label  class="control control--radio"><span data-ng-bind-html="ans"></span>
+                <input type="radio" name="ans" ng-model="ctrl.answers[ctrl.currentQuestion]" ng-value="ans"/>
+                <div class="control__indicator"></div>
+            </label> 
+        </div>
+
+        <button class="btn btn-navy next-btn" ng-click="ctrl.next()" ng-disabled="!ctrl.answers[ctrl.currentQuestion]" data-ng-bind="ctrl.questions.length == (ctrl.currentQuestion+1)?'FINISH':'NEXT'"</button>
+    </div>
+</div>
+
+
+<!-- result block -->
+<div class="quiz-result flex-column flex-center" ng-class="ctrl.showQuizResult?'show':''">
+    <h2>Congratulations {{ctrl.quizDetail.user.name}} !!</h2>
+    <h3>You got {{ctrl.quizDetail.score +' out of '+ctrl.quizDetail.totalScore}} answers right.</h3>
+    <button class="btn btn-yellow mt20" ui-sref="home">Play Again :)</button>
+</div>

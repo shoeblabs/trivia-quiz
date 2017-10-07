@@ -1,0 +1,56 @@
+{
+  "name": "trivia-quiz",
+  "version": "1.0.0",
+  "description": "Trivia Quiz Angular Frontend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "development": "cross-env NODE_ENV=development&& npm start",
+    "dev": "npm run development",
+    "build": "gulp",
+    "production": "cross-env NODE_ENV=production&& npm start",
+    "pro": "npm run production",
+    "setup": "npm install -g bower gulp && npm install && bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shoeblabs/trivia-quiz.git"
+  },
+  "author": "contact@shoebraza.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shoeblabs/trivia-quiz/issues"
+  },
+  "homepage": "https://progressivefrontend.com",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "bower": "^1.8.0",
+    "cross-env": "^3.1.4",
+    "express": "~4.13.1",
+    "gulp": "^3.9.1",
+    "gulp-filter": "^5.0.0",
+    "gulp-hash-filename": "^1.2.0"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-inject": "^4.2.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-ng-annotate": "^0.3.6",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.4",
+    "main-bower-files": "^2.13.1",
+    "run-sequence": "^2.1.0"
+  }
+}

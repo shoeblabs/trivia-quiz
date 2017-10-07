@@ -1,0 +1,51 @@
+
+<h1 class="heading">Welcome to Trivia Quiz</h1>
+
+<div class="flex-row">
+    <div class="flex-1 page-title" data-ng-bind="ctrl.pageTitle"></div>
+    <div class="goback" ng-if="ctrl.step !== 1" ng-click="ctrl.step = ctrl.step-1;ctrl.changeStep(ctrl.step)">Go Back</div>
+</div>
+<!-- category lisiting -->
+<div ng-if="ctrl.step===1" class="category-wrapper flex-row">
+    <div class="loader" ng-if="ctrl.isLoading"></div>
+    <div ng-click="ctrl.setCategory(category)" class="category-card" ng-style="{'background-color':ctrl.cardColors[$index%7]}" data-ng-repeat="category in ctrl.categories | limitTo:10">
+        {{category.name}}
+    </div>
+</div>
+
+<!-- Difficulty level options -->
+<div ng-if="ctrl.step===2" class="category-wrapper flex-row dlevel">
+    <div class="category-card" ng-style="{'background-color':ctrl.cardColors[1]}" ng-click="ctrl.setLevel('easy')">Easy</div>
+    <div class="category-card" ng-if="[9,10,11,12,14,15,17,18].includes(ctrl.quizDetail.category.id)" ng-style="{'background-color':ctrl.cardColors[2]}" ng-click="ctrl.setLevel('medium')">Medium</div>
+    <div class="category-card" ng-if="[9,11,12,15,18].includes(ctrl.quizDetail.category.id)" ng-style="{'background-color':ctrl.cardColors[3]}" ng-click="ctrl.setLevel('hard')">Hard</div>
+</div>
+
+<!-- User Info -->
+<div ng-if="ctrl.step===3" class="flex-column">
+    <form name="userform" class="form-default" ng-submit="ctrl.setUserInfo(ctrl.user)">
+        <div class="form-field">
+            <label>Your Name</label>
+            <input type="text" name="name" ng-model="ctrl.user.name" ng-required="true">
+        </div> 
+        <div class="form-field">
+            <label>Your Email</label>
+            <input type="email" name="email" ng-model="ctrl.user.email" ng-required="true">
+        </div>
+        <div class="form-field">
+            <label>Mobile Number</label>
+            <input type="tel" name="mobile" ng-model="ctrl.user.mobile" ng-minlength="10" pattern="^[7,8,9]+[0-9]{9}" maxlength="10">
+        </div>
+        <div class="form-field">
+            <p class="error">(Note -You have 60 seconds to answer each question)</p>                
+        </div>
+        <div class="form-field text-right">
+            <button type="submit" name="submit" ng-disabled="!userform.$valid" class="btn btn-navy mt20">START QUIZ</button>
+        </div>
+    </form>
+</div>
+
+<! ------ main score --->
+<div class="main-score" ng-if="ctrl.game.score">
+    Total Score <br>
+    {{ctrl.game.score || 0}}/{{ctrl.game.totalScore || 0}}
+</div>
