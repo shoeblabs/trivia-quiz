@@ -1,7 +1,7 @@
-# trivia-quiz
+# Trivia Quiz
 Quiz game using open source quiz library.
 
-## [DEMO - Quiz App] (https://progressivefrontend.com)
+### [DEMO - Quiz App] (https://progressivefrontend.com)
 
 Commands use to setup and run project (dependency - node.js)
 
