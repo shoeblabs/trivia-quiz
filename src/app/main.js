@@ -1,5 +1,5 @@
 (function(){
-
+    /* ----- Author: Shoeb Raza ------ */
     'use strict'
 
     angular

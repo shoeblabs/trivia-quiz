@@ -8,7 +8,7 @@
         function AppRouter ($stateProvider, $urlRouterProvider) {
                 "ngInject";
 
-                var ver = '1.0.0';
+                var ver = '1.2.0';
                 
                 $urlRouterProvider.otherwise('/');
 

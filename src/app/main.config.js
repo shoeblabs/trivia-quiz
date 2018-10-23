@@ -3,7 +3,7 @@
 
     angular
         .module('triviaQuiz')
-        .constant('API_URL','https://opentdb.com/')
+        .constant('API_URL','https://api.noonops.net/users/v1/')
         .config(AppConfig);
 
         //Config

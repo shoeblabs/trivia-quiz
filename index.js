@@ -24,7 +24,6 @@ app.get('*', function (request, response) {
     } else {
         response.sendFile(path.join(__dirname,'dist/index.html'));        
     }
-	
 });
 
 /**

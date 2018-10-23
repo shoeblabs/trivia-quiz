@@ -1,20 +1,20 @@
 {
-  "name": "Trivia Quiz",
-  "short_name": "TQuiz",
-  "theme_color": "#bf1e2e",
-  "background_color":"#43a047",
+  "name": "Nooners",
+  "short_name": "Nooners",
+  "theme_color": "#1e94bf",
+  "background_color":"#19b9d6",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "\/assets\/images\/favicon-192x192.png",
-      "sizes": "192x192",
+      "src": "\/assets\/images\/noon-icon-72.png",
+      "sizes": "72x72",
       "type": "image\/png"
     },
     {
-      "src": "\/assets\/images\/favicon-256x256.png",
-      "sizes": "256x256",
+      "src": "\/assets\/images\/noon-icon-192.png",
+      "sizes": "192x192",
       "type": "image\/png"
     }	
   ]

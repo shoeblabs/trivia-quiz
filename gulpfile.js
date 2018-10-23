@@ -22,7 +22,8 @@ var src = {
     bower: './src/bower_components',
     view : './src/app/views/**/*.html',
     images: './src/assets/images/**/*',
-    manifest: './src/app/**/*.json'
+    manifest: './src/app/**/*.json',
+    worker: './src/app/service-worker.js'
 };
 
 var out = {
@@ -30,7 +31,8 @@ var out = {
     js : './dist/js',
     view : './dist/app/views',
     images:'./dist/assets/images',
-    manifest: './dist'
+    manifest: './dist',
+    worker: './dist'
 };
 
 var js_filter = gulpFilter(['**/*.js','!**/*.min.js']);
@@ -117,6 +119,11 @@ gulp.task('moveManifest', function() {
         .pipe(gulp.dest(out.manifest));
 });
 
+gulp.task('moveServiceWorker', function() {
+    return gulp.src(src.worker)
+        .pipe(gulp.dest(out.worker));
+});
+
 //inject dist files in index.html
 gulp.task('injectIndex', function () {
   var target = gulp.src('./src/temp/index.html');
@@ -137,5 +144,5 @@ gulp.task('clearCache', function() {
 });
 
 gulp.task('default',function(callback) {
-  runSequence('clean',['appCss','appJs','vendorJs','moveView','moveImages','moveManifest'],'injectIndex',callback);
+  runSequence('clean',['appCss','appJs','vendorJs','moveView','moveImages','moveManifest',],'injectIndex',callback);
 });
