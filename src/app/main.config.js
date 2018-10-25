@@ -7,9 +7,10 @@
         .config(AppConfig);
 
         //Config
-        function AppConfig($locationProvider, $compileProvider) {
+        function AppConfig($locationProvider, $compileProvider, $interpolateProvider) {
             "ngInject";
-
+            $interpolateProvider.startSymbol('[[');
+            $interpolateProvider.endSymbol(']]');
             $locationProvider.html5Mode(true); //for clean urls
             $compileProvider.debugInfoEnabled(false); //disable debug info
 

@@ -10,7 +10,7 @@
     function quizCtrl ($state, $interval, quiz) {
         "ngInject";
 
-        if (!localStorage.token) $state.go("home");
+        if (!localStorage.token && !localStorage.debug) $state.go("home");
 
         var vm = this;
         var timer = null;

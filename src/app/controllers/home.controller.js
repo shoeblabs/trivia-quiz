@@ -17,6 +17,8 @@
         vm.isLoading = false;
         vm.setUserInfo = setUserInfo;
 
+        if(localStorage.debug) $state.go("quiz");
+
         //set level
         function setUserInfo (user) {
             if (vm.isLoading) return;

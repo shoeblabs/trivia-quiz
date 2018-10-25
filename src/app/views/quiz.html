@@ -4,7 +4,7 @@
     <div class="flex-row flex-center">
         <div class="flex-1">
         </div>
-        <div id="cont" data-pct="{{ctrl.timeCount}}">
+        <div id="cont" data-pct="[[ctrl.timeCount]]">
             <svg id="svg" width="90" height="90" viewPort="8 8 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <circle r="35" cx="40" cy="40" fill="transparent" stroke-dasharray="219.92"></circle>
                 <circle id="bar" r="35" cx="40" cy="40" fill="transparent" stroke-dasharray="219.92" ng-style="{'stroke-dashoffset':3.6653 * (60-ctrl.timeCount)}"></circle>
@@ -15,8 +15,7 @@
     </div>
     <div class="question-wrap">
         <p class="info" data-ng-bind="'Question '+(ctrl.currentQuestion+1)+' of '+ ctrl.questions.length"></p>
-        <h3 data-ng-bind-html="(ctrl.currentQuestion+1)+'. '+ctrl.questions[ctrl.currentQuestion].question"></h3>
-
+        <ng-highlighter class="language-javascript" ng-bind-html="ctrl.questions[ctrl.currentQuestion].question"></ng-highlighter>
         <div class="answer" data-ng-repeat="ans in ctrl.questions[ctrl.currentQuestion].choices">
             <label  class="control control--radio"><span data-ng-bind-html="ans.answer"></span>
                 <input type="radio" name="ans.answer" ng-model="ctrl.answers[ctrl.currentQuestion]" ng-value="ans"/>
@@ -31,7 +30,7 @@
 
 <!-- result block -->
 <div class="quiz-result flex-column flex-center" ng-class="ctrl.showQuizResult?'show':''">
-    <h2>Congratulations {{ctrl.quizDetail.user.name}} !!</h2>
-    <h3>You got {{ctrl.quizDetail.score +' out of '+ctrl.quizDetail.totalScore}} answers right.</h3>
+    <h2>Congratulations [[ctrl.quizDetail.user.name]] !!</h2>
+    <h3>You got [[ctrl.quizDetail.score +' out of '+ctrl.quizDetail.totalScore]] answers right.</h3>
     <button class="btn btn-yellow mt20" ui-sref="home">Close</button>
 </div>
