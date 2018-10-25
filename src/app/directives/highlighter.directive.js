@@ -10,7 +10,7 @@
             "ngInject";
             return {
                 restrict: 'E',
-                template: '<pre><code ng-transclude></code></pre>',
+                template: '<code ng-transclude></code>',
                 replace:true,
                 transclude:true
             };

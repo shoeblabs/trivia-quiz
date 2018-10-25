@@ -721,7 +721,7 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clik
  
  /* Inline code */
  :not(pre) > code[class*="language-"] {
-   padding: .1em;
+   /* padding: .1em; */
    border-radius: .3em;
    white-space: normal;
  }
@@ -799,4 +799,10 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clik
  .token.entity {
    cursor: help;
  }
+
+ code[class*="language-"]  {
+  display: block;
+  padding: 15px;
+  margin-bottom: 10px;
+}
  
