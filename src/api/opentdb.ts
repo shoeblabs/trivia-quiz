@@ -24,38 +24,8 @@ function cleanCategoryName(name: string): string {
   return name.includes(':') ? name.split(':')[1].trim() : name
 }
 
-export async function getCategoryList(): Promise<Category[]> {
-  const response = await fetch(`${API_URL}api_category.php`)
-  if (!response.ok) {
-    throw new Error(`Failed to load categories (${response.status})`)
-  }
-
-  const data = (await response.json()) as CategoryApiResponse
-  return data.trivia_categories.map((category) => ({
-    ...category,
-    name: cleanCategoryName(category.name),
-  }))
-}
-
-export async function getQuestionList(
-  category: number,
-  difficulty: Difficulty,
-  amount = 20,
-): Promise<QuizQuestion[]> {
-  const params = new URLSearchParams({
-    amount: String(amount),
-    category: String(category),
-    difficulty,
-  })
-
-  const response = await fetch(`${API_URL}api.php?${params.toString()}`)
-  if (!response.ok) {
-    throw new Error(`Failed to load questions (${response.status})`)
-  }
-
-  const data = (await response.json()) as QuestionsApiResponse
-
-  return data.results.map((item) => {
+function mapQuestions(results: QuestionsApiResponse['results']): QuizQuestion[] {
+  return results.map((item) => {
     const correct = decodeHtmlEntities(item.correct_answer)
     const incorrect = item.incorrect_answers.map(decodeHtmlEntities)
     const answers = shuffleArray([...incorrect, correct])
@@ -69,6 +39,66 @@ export async function getQuestionList(
       incorrect_answers: incorrect,
       answers,
     }
+  })
+}
+
+/** Share in-flight requests so React StrictMode remounts do not double-hit OpenTDB. */
+const inflight = new Map<string, Promise<unknown>>()
+
+function sharedRequest<T>(key: string, factory: () => Promise<T>): Promise<T> {
+  const existing = inflight.get(key)
+  if (existing) {
+    return existing as Promise<T>
+  }
+
+  const promise = factory().finally(() => {
+    inflight.delete(key)
+  })
+  inflight.set(key, promise)
+  return promise
+}
+
+export async function getCategoryList(): Promise<Category[]> {
+  return sharedRequest('categories', async () => {
+    const response = await fetch(`${API_URL}api_category.php`)
+    if (!response.ok) {
+      throw new Error(`Failed to load categories (${response.status})`)
+    }
+
+    const data = (await response.json()) as CategoryApiResponse
+    return data.trivia_categories.map((category) => ({
+      ...category,
+      name: cleanCategoryName(category.name),
+    }))
+  })
+}
+
+export async function getQuestionList(
+  category: number,
+  difficulty: Difficulty,
+  amount = 20,
+): Promise<QuizQuestion[]> {
+  const params = new URLSearchParams({
+    amount: String(amount),
+    category: String(category),
+    difficulty,
+  })
+  const key = `questions:${params.toString()}`
+
+  return sharedRequest(key, async () => {
+    const response = await fetch(`${API_URL}api.php?${params.toString()}`)
+    if (!response.ok) {
+      throw new Error(`Failed to load questions (${response.status})`)
+    }
+
+    const data = (await response.json()) as QuestionsApiResponse
+
+    // OpenTDB response_code 0 = success; anything else yields no usable results.
+    if (data.response_code !== 0) {
+      return []
+    }
+
+    return mapQuestions(data.results)
   })
 }
 
